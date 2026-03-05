@@ -1,9 +1,14 @@
 
 import './App.css';
+import Header from './components/Header/Header';
+import CarouselEffect from './components/Carousel/Carousel';
 
 function App() {
   return (
-   <div> Hello World</div>
+   <div>
+    <Header/>
+    <CarouselEffect />
+   </div>
   );
 }
 
