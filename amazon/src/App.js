@@ -1,17 +1,12 @@
+import React from "react";
+import Routing from "./Router";
+import "./App.css";
+import './index.css'
 
-import './App.css';
-import Header from './components/Header/Header';
-import CarouselEffect from './components/Carousel/Carousel';
-import Catagory from './components/Catagory/Catagory';
 
 function App() {
-  return (
-   <div>
-    <Header/>
-    <CarouselEffect />
-    <Catagory />
-   </div>
-  );
+  return  <Routing />
+  
 }
 
 export default App;

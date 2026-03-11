@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import classes from './Header.module.css';
 import LowerHeader from './LowerHeader';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -12,12 +13,12 @@ const Header = () => {
           <div className={classes.header__container} > 
             {/* Logo */}
             <div className={classes.logo__container}> 
-            <a href="/">
+            <Link to="/">
               <img 
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" 
                 alt="Amazon Logo"  
               />
-            </a>
+            </Link>
             <div className={classes. delivery}>
             { /* delivery*/ }
             <span>
@@ -45,31 +46,31 @@ const Header = () => {
 
           {/* right side */ }
           <div className={classes.order__container}>
-            <a href=""  className={classes.language}>
+            <Link to="/auth" className={classes.language}>
               <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User Icon" style={{ width: '30px' }} />
               <section>
                 <option value='' >EN </option>
               </section>
-            </a>
+            </Link>
             {/* account and list */ }
-            <a href="" >
+            <Link to="/auth" >
               <div> 
                 <p>Hello, Sign in</p>
                 <span>Account & Lists</span>
               </div>
-            </a>
+            </Link>
             {/* orders */ }
-            <a href="" >  
+            <Link to="/orders" >  
               <div>
                 <p>Returns</p>
                 <span>& Orders</span>
               </div>
-            </a>
+            </Link>
             {/* cart */ }
-            <a href="" className={classes.cart} >
+            <Link to="/cart" className={classes.cart} >
               <BiCart size= {40} />
               <span>0 </span>
-            </a>
+            </Link>
            </div>
           </div>
         </section>

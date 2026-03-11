@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff9900;
+    --primary-shade: #e68a00;
+    --secondary-color: #232f3e;
+    --text-color: #111;
+    --background-color: #fff;
+    --border-radius: 5px;
+    --font-family: 'Arial', sans-serif;
+}
