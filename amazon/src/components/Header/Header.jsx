@@ -4,15 +4,29 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import classes from './Header.module.css';
 import LowerHeader from './LowerHeader';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {DataContext} from '../DataProvider/DataProvider';
+import { auth } from '../../Utility/Firebase';
+import { Type } from '../../Utility/action.type';
+
 
 const Header = () => {
-    
+  const navigate = useNavigate();
   const [state, dispatch] = useContext(DataContext) ;
   // const [{basket}, dispatch] = useContext(DataContext) ;
   const totalItems = state.basket.reduce((total, item) => total + item.amount, 0);
 
+  const handleAuthClick = () => {
+    if (state.user) {
+      // Sign out the user and clear context state immediately
+      auth.signOut().then(() => {
+        dispatch({ type: Type.SET_USER, user: null });
+        navigate("/auth");
+      });
+    } else {
+      navigate("/auth");
+    }
+  };
 
   return (
       <section className={classes.fixed} >
@@ -60,12 +74,19 @@ const Header = () => {
               </section>
             </Link>
             {/* account and list */ }
-            <Link to="/auth" >
-              <div> 
-                <p>Hello, Sign in</p>
-                <span>Account & Lists</span>
+            {state.user ? (
+              <div className={classes.account} onClick={handleAuthClick} style={{ cursor: 'pointer' }}>
+                <p>Hello {state.user?.email?.split('@')[0]}</p>
+                <span>Sign Out</span>
               </div>
-            </Link>
+            ) : (
+              <Link to="/auth" className={classes.account}>
+                <div>
+                  <p>Hello, Sign in</p>
+                  <span>Account & Lists</span>
+                </div>
+              </Link>
+            )}
             {/* orders */ }
             <Link to="/orders" >  
               <div>
