@@ -7,7 +7,7 @@ import { Type } from '../../Utility/action.type';
 import { useContext } from 'react';
 import {DataContext} from '../DataProvider/DataProvider';
 
-function ProductCard( { product , flex ,renderDescription  } ) {
+function ProductCard( { product , flex ,renderDescription ,renderAdd } ) {
     // const { title, price, image , rating ,id  } = product;
   const [state, dispatch] = useContext(DataContext) ;  
 
@@ -34,25 +34,30 @@ function ProductCard( { product , flex ,renderDescription  } ) {
 
       <Link to={`/product/${ product.id}`}>
         <img src={product.image} alt={product.title} />
-        </Link>
-        <div>
-          <h2 className={classes.products_title}>{product.title}</h2>
-          {renderDescription && <div style={ {  maxWidth: '750px' } }>{product.description}</div>}
+      </Link>
 
-          <div className={classes.rating}>
-            {/* rating */}
-            <Rating value={product.rating?.rate} precision={0.5}  />
-            {/* price */}
-            <small> 
-                
-            </small>
-            </div>
+      {/* wrap textual info in a column when we're in flex/detail mode */}
+      <div className={flex ? classes.info : ''}>
+        <h2 className={classes.products_title}>{product.title}</h2>
+        {renderDescription && <div style={ {  maxWidth: '750px' } }>{product.description}</div>}
+
+        <div className={classes.rating}>
+          {/* rating */}
+          <Rating value={product.rating?.rate} precision={0.5}  />
         </div>
-        <div>
-            {/*price */}
-            <CurrencyFormat amount={product.price} />
-        </div>
-        <button className={classes.button}  onClick={addToCart} >Add to Cart</button>
+
+        {/* price display */}
+        <CurrencyFormat amount={product.price} />
+
+        {/* add to cart button lives with the rest so it sits under description/price */}
+    
+    {
+      renderAdd && <button className={classes.button}  onClick={addToCart} >Add to Cart</button>
+    
+    }
+
+       
+      </div>
     </div>
   )
 }

@@ -48,10 +48,35 @@
   align-items: center;
   padding: 10px 0px;
 }
-.producs_title {
-  font-size: 18px;
+.products_title {
+  /* smaller headline for product cards, overridden by flex/detail layout if needed */
+  font-size: 17px;
   font-weight: bolder;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  margin: 0;
+  /* optional ellipsis on long titles */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+/* additional helpers for the detail view */
+.product__flexed .info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* keep the add‑to‑cart button in the normal document flow for flex/detail */
+.product__flexed .button {
+  display: block;
+  position: static;
+  width: 150px;
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
 .products_container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
